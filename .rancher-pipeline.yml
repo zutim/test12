@@ -4,8 +4,11 @@ stages:
   - publishImageConfig:
       dockerfilePath: ./docker/Dockerfile
       buildContext: .
-      tag: test
+      tag: app
       pushRemote: true
       registry: 127.0.0.1:34860
-
-
+- name: deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
+notification: {}
