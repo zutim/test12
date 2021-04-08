@@ -1,22 +1,22 @@
 stages:
-  - name: Build
-    steps:
-      - runScriptConfig:
-          image: golang:1.16
-          shellScript: |-
-            go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct
-            go mod tidy
-            pwd
-            go build -o app
-  - name: Publish
-    steps:
-      - publishImageConfig:
-          dockerfilePath: ./Dockerfile
-          buildContext: .
-          tag: funfecenter:${CICD_EXECUTION_SEQUENCE}
-  - name: Deploy
-    steps:
-      - applyYamlConfig:
-          path: ./deployment.yaml
+- name: Build
+  steps:
+  - runScriptConfig:
+      image: golang:1.16
+      shellScript: |-
+        go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct
+        go mod tidy
+        pwd
+        go build -o app
+- name: Publish
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: funfecenter:${CICD_EXECUTION_SEQUENCE}
+- name: Deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
 timeout: 60
 notification: {}
