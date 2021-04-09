@@ -1,5 +1,5 @@
 FROM golang:1.16
-EXPOSE 1333
+EXPOSE 8091
 COPY ./app /data/funfecenter/center
 #COPY ./init/ /
 #COPY script.py /root/

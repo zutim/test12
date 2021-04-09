@@ -7,7 +7,7 @@ stages:
             go env -w GO111MODULE=on && go env -w GOPROXY=https://goproxy.cn,direct
             go mod tidy
             pwd
-            go build -o app
+            go build -o app -v main.go
   - name: Publish
     steps:
       - publishImageConfig:
